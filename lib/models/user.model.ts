@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   name: { type: String, required: true },
   image: String,
+  darkMode: { type: Boolean, default: false },
+  onboarded: { type: Boolean, default: false},
   todos: [
     {
       type: mongoose.Schema.Types.ObjectId,

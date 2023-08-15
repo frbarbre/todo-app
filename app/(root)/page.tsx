@@ -1,22 +1,18 @@
-import Create from '@/components/Create';
-import Todos from '@/components/Todos';
-import { createTodo, fetchTodos } from '@/lib/actions/todo.actions';
-import { createUser, fetchUser } from '@/lib/actions/user.actions';
-import { UserButton } from '@clerk/nextjs';
-import { currentUser } from '@clerk/nextjs';
+import Create from "@/components/Create";
+import Reset from "@/components/Reset";
+import Todos from "@/components/Todos";
+import { fetchTodos } from "@/lib/actions/todo.actions";
+import { fetchUser } from "@/lib/actions/user.actions";
+import { UserButton } from "@clerk/nextjs";
+import { currentUser } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
-export default async function Home() {
+export default async function TodoPage() {
   const user = await currentUser();
   if (!user) return null;
 
   const userInfo = await fetchUser(user?.id);
-
-  await createUser({
-    userId: user.id,
-    image: user.imageUrl,
-    username: user.username || user.emailAddresses[0].emailAddress,
-    name: user.firstName || '',
-  });
+  if (!userInfo?.onboarded) redirect("/welcome");
 
   const result = await fetchTodos(userInfo?._id);
 
@@ -24,7 +20,13 @@ export default async function Home() {
     <main>
       <UserButton afterSignOutUrl="/" />
       <Create userId={userInfo?._id.toString()} />
-      <Todos todos={result} userId={userInfo?._id.toString()} />
+      <Todos result={result} />
+      <Reset
+        userId={userInfo?._id.toString()}
+        currentDarkMode={userInfo?.darkMode}
+        id={userInfo?.id}
+      />
+      <div>{userInfo?.darkMode.toString()}</div>
     </main>
   );
 }

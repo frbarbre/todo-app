@@ -1,22 +1,16 @@
-'use client';
+"use client";
 
-import {
-  deleteTodo,
-  resetTodos,
-  setTodoDone,
-} from '@/lib/actions/todo.actions';
-import { usePathname } from 'next/navigation';
+import { deleteTodo, setTodoDone } from "@/lib/actions/todo.actions";
+import { usePathname } from "next/navigation";
 
 export default function Todo({
   text,
   isDone,
   id,
-  userId,
 }: {
   text: string;
   isDone: boolean;
   id: string;
-  userId: string;
 }) {
   const pathname = usePathname();
 
@@ -29,17 +23,15 @@ export default function Todo({
     await deleteTodo(id, pathname);
   }
 
-  async function handleReset() {
-    await resetTodos(userId, pathname);
-  }
-
   return (
-    <div className={isDone ? 'text-red-500' : 'text-green-500'}>
-      <div onClick={() => handleIsDone(isDone ? false : true)}>
-        {isDone.toString()}
+    <div>
+      <div onClick={() => handleIsDone(isDone ? false : true)}>Switch</div>
+      <div className={isDone ? "text-red-500" : "text-green-500"}>
+        <div>
+          {text}, {isDone.toString()}
+        </div>
+        <div onClick={handleDelete}>Delete</div>
       </div>
-      <div onClick={handleDelete}>Delete</div>
-      <div onClick={handleReset}>Reset</div>
     </div>
   );
 }

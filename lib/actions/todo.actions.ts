@@ -1,9 +1,9 @@
-'use server';
+"use server";
 
-import { revalidatePath } from 'next/cache';
-import Todo from '../models/todo.model';
-import User from '../models/user.model';
-import { connectToDB } from '../mongoose';
+import { revalidatePath } from "next/cache";
+import Todo from "../models/todo.model";
+import User from "../models/user.model";
+import { connectToDB } from "../mongoose";
 
 interface Params {
   text: string;
@@ -34,7 +34,7 @@ export async function createTodo({
 
     revalidatePath(path);
   } catch (error: any) {
-    throw new Error(`Failed to create thread: ${error.message}`);
+    throw new Error(`Failed to create todo: ${error.message}`);
   }
 }
 
@@ -44,7 +44,7 @@ export async function fetchTodos(userId: string) {
 
     return await Todo.find({ author: userId });
   } catch (error: any) {
-    throw new Error(`Failed to fetch user: ${error.message}`);
+    throw new Error(`Failed to fetch todo: ${error.message}`);
   }
 }
 
@@ -70,7 +70,7 @@ export async function setTodoDone({
 
     revalidatePath(path);
   } catch (error: any) {
-    throw new Error(`Failed to create/update user: ${error.message}`);
+    throw new Error(`Failed to set todo done: ${error.message}`);
   }
 }
 
@@ -86,7 +86,7 @@ export async function deleteTodo(id: string, path: string): Promise<void> {
 
     revalidatePath(path);
   } catch (error: any) {
-    throw new Error(`Failed to delete thread: ${error.message}`);
+    throw new Error(`Failed to delete todo: ${error.message}`);
   }
 }
 
@@ -104,6 +104,6 @@ export async function resetTodos(userId: string, path: string): Promise<void> {
 
     revalidatePath(path);
   } catch (error: any) {
-    throw new Error(`Failed to delete thread: ${error.message}`);
+    throw new Error(`Failed to clear todos: ${error.message}`);
   }
 }
