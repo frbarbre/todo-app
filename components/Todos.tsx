@@ -7,7 +7,7 @@ export default function Todos({
   todos: any[];
   userId: string;
 }) {
-
+console.log(todos)
   return (
     <div>
       {todos.map((todo) => (
@@ -15,7 +15,7 @@ export default function Todos({
           userId={userId}
           key={todo._id}
           text={todo.text}
-          id={todo.id}
+          id={todo.id.toString()}
           isDone={todo.isDone}
         />
       ))}

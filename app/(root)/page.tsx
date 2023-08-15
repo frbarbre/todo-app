@@ -23,8 +23,8 @@ export default async function Home() {
   return (
     <main>
       <UserButton afterSignOutUrl="/" />
-      <Create userId={userInfo?._id} />
-      <Todos todos={result} userId={userInfo?._id} />
+      <Create userId={userInfo?._id.toString()} />
+      <Todos todos={result} userId={userInfo?._id.toString()} />
     </main>
   );
 }
