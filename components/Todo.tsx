@@ -1,8 +1,6 @@
 'use client';
 
 import {
-  deleteAllTodos,
-  deleteOneTodo,
   deleteTodo,
   resetTodos,
   setTodoDone,
