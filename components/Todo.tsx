@@ -28,7 +28,7 @@ export default function Todo({
       <div onClick={() => handleIsDone(isDone ? false : true)}>Switch</div>
       <div className={isDone ? "text-red-500" : "text-green-500"}>
         <div>
-          {text}, {isDone.toString()}
+          {text}
         </div>
         <div onClick={handleDelete}>Delete</div>
       </div>

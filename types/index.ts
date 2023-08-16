@@ -4,5 +4,11 @@ export interface TodoProps {
   text: string;
   author: string;
   isDone: boolean;
-  createdAt: string;
+  createdAt: number;
+}
+
+export enum Filter {
+  all = "all",
+  active = "active",
+  completed = "completed"
 }
