@@ -25,13 +25,18 @@ export default function TodoContainer({
         darkMode ? 'bg-dark-600 text-dark-100' : 'bg-light-100 text-light-500'
       } rounded-[4px] shadow-lg`}
     >
-      {filter === Filter.all ? (
-        <Todos result={sortedResult} />
-      ) : filter === Filter.active ? (
-        <Todos result={activeTodos} />
-      ) : filter === Filter.completed ? (
-        <Todos result={doneTodos} />
-      ) : null}
+      <Todos
+        result={
+          filter === Filter.all
+            ? sortedResult
+            : filter === Filter.active
+            ? activeTodos
+            : doneTodos
+        }
+        darkMode={darkMode}
+        filter={filter}
+      />
+
       <ControlPanel
         filter={filter}
         setFilter={setFilter}

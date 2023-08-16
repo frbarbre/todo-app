@@ -37,7 +37,11 @@ export default function CreateTodo({
           darkMode ? 'bg-dark-600 text-dark-100' : 'bg-light-100 text-light-500'
         }`}
       >
-        <div className="rounded-full border-[2px] border-solid border-light-300 h-[20px] aspect-square"></div>
+        <div
+          className={`rounded-full border-[2px] border-solid ${
+            darkMode ? 'border-dark-400' : 'border-light-300'
+          } h-[20px] aspect-square`}
+        ></div>
         <input
           type="text"
           value={inputValue}

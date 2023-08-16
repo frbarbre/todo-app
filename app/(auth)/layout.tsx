@@ -23,13 +23,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${josefinSans.className} min-h-[100svh] flex flex-col gap-4 items-center justify-center`}
+          className={`${josefinSans.className} min-h-[100svh] flex flex-col gap-10 items-center justify-center`}
         >
           <Background isDarkMode={false} />
           <h2 className="font-bold text-white md:text-[40px] md:tracking-[15.13px] text-[28px] tracking-[9.46px]">
             TODO
           </h2>
-          {children}
+          <main className='px-[26px] w-full'>{children}</main>
         </body>
       </html>
     </ClerkProvider>

@@ -20,7 +20,7 @@ export default function Reset({
     <div className="justify-self-end">
       <div
         onClick={handleReset}
-        className={`text-[14.5px] tracking-[-0.723px]  ${
+        className={`text-[14.5px] tracking-[-0.723px] cursor-pointer text-right ${
           darkMode ? 'text-dark-400' : 'text-light-400'
         }`}
       >
